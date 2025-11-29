@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlyAra - Aventura na Floresta</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/icone do pexe.png">
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">FlyAra</a>
+        
+        <nav>
+            <a href="#loja">Skins</a>
+
+            <div class="search-box">
+                <input type="text" placeholder="Buscar..." class="input-bloqueio">
+                <button class="btn-search">🔍</button>
+            </div>
+        </nav>
+        
+        <a href="FlyAra.zip" download class="btn-pixel">BAIXAR</a>
+    </header>
+
+    <div class="breadcrumbs">
+        Você está em: <span>Início</span> > <span>O Jogo</span>
+    </div>
+    
+    <a href="#" id="backToTop" class="btn-top" title="Voltar ao Topo">⬆</a>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>VOE PELA NOITE</h1>
+            <p>Guie a Arara Azul através da floresta e colete peixes.</p>
+            <a href="#jogar" class="btn-pixel big">JOGAR AGORA</a>
+        </div>
+        
+        <div class="bird-container">
+            <div class="hero-bird"></div>
+        </div>
+        
+        <div class="layer layer-trees"></div>
+        <div class="layer layer-water"></div>
+        <div class="layer layer-moon"></div>
+    </section>
+
+    <section id="historia" class="container">
+        <h2>RECURSOS</h2>
+        <div class="grid">
+            <div class="card pixel-border">
+                <img src="img/obstaculo.png" alt="Tronco" style="height: 50px;">
+                <h3>Desvie</h3>
+                <p>Teste seus reflexos contra troncos e obstáculos.</p>
+            </div>
+            <div class="card pixel-border">
+                <img src="img/icone do pexe.png" alt="Peixe" style="height: 50px;">
+                <h3>Colete</h3>
+                <p>Pegue peixes para desbloquear novas skins.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="jogar" class="game-section">
+        <div class="game-container">
+            
+            <div class="game-info">
+                <h2>COMO JOGAR</h2>
+                <p>Ajude a Arara Azul a voar pela floresta noturna!</p>
+                
+                <ul class="controls">
+                    <li>
+                        <span class="key">ESPAÇO</span>
+                        <span>Clique espaço para voar</span>
+                    </li>
+                </ul>
+
+                <div class="tip">
+                    <strong>Dica:</strong> Colete peixes para ganhar pontos e conseguir customizáveis!
+                </div>
+            </div>
+
+            <div class="canvas-wrapper">
+                <canvas id="canvas" width="960" height="540">
+                    Seu navegador não suporta HTML5.
+                </canvas>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="loja" class="skins-section">
+        <h2>ESCOLHA SEU TEMA</h2>
+        <p>Personalize o tema do site com as skins disponiveis!</p>
+    
+        <div class="skins-grid">
+            <div class="skin-card" onclick="mudarTema('#1B8682', '#5D9BF8', 'img/arara_strip3.png')">
+                <div class="skin-icon" style="background-image: url('img/arara_strip3.png');"></div>
+                <h3>Arara Azul</h3>
+            </div>
+    
+            <div class="skin-card" onclick="mudarTema('#8D6E63', '#F4D03F', 'img/Carcara_strip3.png')">
+                <div class="skin-icon" style="background-image: url('img/Carcara_strip3.png');"></div>
+                <h3>Carcará</h3>
+            </div>
+    
+            <div class="skin-card" onclick="mudarTema('#922B21', '#E67E22', 'img/Coruja_strip3.png')">
+                <div class="skin-icon" style="background-image: url('img/Coruja_strip3.png');"></div>
+                <h3>Coruja</h3>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <h3>Redes Sociais:</h3>
+            <a href="#" target="_blank">Discord</a>
+            <a href="#" target="_blank">Instagram</a>
+        </div>
+        <div class="contact">
+             <p>Suporte e Bugs: <a href="mailto:kauanreisfernandes@gmail.com">kauanreisfernandes@gmail.com</a></p>
+        </div>
+            
+        <div class="newsletter">
+            <h3>Receba Novidades (Updates)</h3>
+            <form action="#" onsubmit="alert('Obrigado por se inscrever!'); return false;">
+                <input type="email" placeholder="Seu e-mail" required class="input-bloqueio">
+                <button type="submit" class="btn-pixel">INSCREVER</button>
+            </form>
+            <p class="update-date">Última atualização do site: 29/11/2025</p>
+        </div>
+        <p class="copyright">&copy; 2025 FlyAra Project. Desenvolvido com GameMaker Studio 2</p>
+    </footer>
+
+    <script type="text/javascript" src="html5game/flappy.js"></script>
+
+    <script>
+        // Inicia o GameMaker
+        window.onload = function () {
+            if (typeof GameMaker_Init === 'function') {
+                GameMaker_Init();
+            }
+        };
+
+        // Botão Voltar ao Topo
+        const btnTop = document.getElementById("backToTop");
+        window.onscroll = function() {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                btnTop.style.display = "block"; 
+            } else {
+                btnTop.style.display = "none";
+            }
+        };
+
+        function realizarBusca() {
+            const termo = document.querySelector('.search-box input').value.toLowerCase().trim();
+            
+            if (termo === "") {
+                alert("Por favor, digite algo para buscar!");
+                return;
+            }
+
+            const mapaNavegacao = {
+                'skin': 'loja', 'tema': 'loja', 'cor': 'loja', 'loja': 'loja', 
+                'comprar': 'loja', 'arara': 'loja', 'carcara': 'loja', 'coruja': 'loja',
+                
+                'jogar': 'jogar', 'jogo': 'jogar', 'game': 'jogar', 'controles': 'jogar',
+                'espaço': 'jogar', 'play': 'jogar',
+                
+                'historia': 'historia', 'sobre': 'historia', 'recursos': 'historia',
+                'peixe': 'historia', 'obstaculo': 'historia', 'ajuda': 'historia',
+                
+                'baixar': 'jogar', 'download': 'jogar'
+            };
+
+            let encontrou = false;
+
+            for (let chave in mapaNavegacao) {
+                if (termo.includes(chave) || chave.includes(termo)) {
+                    const idDestino = mapaNavegacao[chave];
+                    const secao = document.getElementById(idDestino);
+                    if (secao) {
+                        secao.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        encontrou = true;
+                    }
+                    break;
+                }
+            }
+
+            if (!encontrou) {
+                alert("Não encontramos '" + termo + "'. Tente 'skins', 'jogar' ou 'recursos'.");
+            }
+        }
+
+        document.querySelector('.btn-search').addEventListener('click', realizarBusca);
+        document.querySelector('.search-box input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') realizarBusca();
+        });
+
+       
+        function mudarTema(corPrincipal, corDestaque, imagemSprite) {
+            document.documentElement.style.setProperty('--water-teal', corPrincipal);
+            document.documentElement.style.setProperty('--arara-blue', corDestaque);
+            const heroBird = document.querySelector('.hero-bird');
+            heroBird.style.backgroundImage = "url('" + imagemSprite + "')";
+        }
+
+        var inputs = document.querySelectorAll(".input-bloqueio");
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].addEventListener("keydown", function(e) { e.stopPropagation(); });
+            inputs[i].addEventListener("keypress", function(e) { e.stopPropagation(); });
+            inputs[i].addEventListener("keyup", function(e) { e.stopPropagation(); });
+        }
+    </script>
+</body>
+</html>
