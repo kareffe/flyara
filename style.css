@@ -1,9 +1,10 @@
-/* --- Variáveis e Reset --- */
+/*variaveis*/
+
 :root {
-    --bg-night: #181026;   /* Roxo escuro */
-    --water-teal: #1B8682; /* Verde água */
-    --arara-blue: #5D9BF8; /* Azul */
-    --tree-dark: #081626;  /* Azul das árvores */
+    --bg-night: #181026;   
+    --water-teal: #1B8682; 
+    --arara-blue: #5D9BF8; 
+    --tree-dark: #081626;  
     --text-white: #EAEAEA;
     --font-pixel: 'VT323', monospace;
 }
@@ -19,7 +20,6 @@ body {
     min-width: 1024px; 
 }
 
-/* --- (Header) --- */
 header {
     display: flex;
     justify-content: space-between;
@@ -60,7 +60,7 @@ nav a {
 
 nav a:hover { color: var(--water-teal); }
 
-/* --- Botões e Inputs --- */
+/* botões*/
 .btn-pixel {
     background: var(--water-teal);
     color: #fff;
@@ -170,7 +170,6 @@ nav a:hover { color: var(--water-teal); }
     to { transform: translateY(-20px); }
 }
 
-/* --- 5. Camadas --- */
 .layer { position: absolute; pointer-events: none; }
 
 .layer-moon {
@@ -200,7 +199,6 @@ nav a:hover { color: var(--water-teal); }
     z-index: 2;
 }
 
-/* --- 6. Conteúdo e Jogo --- */
 .container {
     padding: 80px 10%;
     background: #0d0816;
